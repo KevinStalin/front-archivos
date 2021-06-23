@@ -1,0 +1,30 @@
+footer {
+    /* height: 10px; */
+    /* background-image: url(http://www.keoniworld.com/wp-content/uploads/2016/06/swaying-field-grass.gif); */
+    /* background-position: center bottom; */
+    /* background-size: 50% 85%; */
+    /* background-repeat: repeat-x; */
+    min-height: 20vh;
+    padding: 20px 10px;
+    /* width: 960px; */
+}
+
+
+/* footer {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+footer p {
+    color: #f8f8f8;
+    font-size: 14px;
+}
+
+footer a.totop {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+footer a.totop:focus {
+    outline: 0;
+} */

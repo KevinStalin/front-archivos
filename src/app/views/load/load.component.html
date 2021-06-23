@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+
+
+<div class="container p-4">
+    <!-- <form [formGroup]="formTouch" (submit)="getTouch()" enctype="multipart/form-data"> -->
+
+    <div align="center">
+        <h2><strong>SELECCION DE ARCHIVOS</strong></h2>
+    </div>
+
+    <div class="form-group">
+        <label for="formFile" class="form-label mt-4 ">Seleccione Excel</label>
+        <input (change)="capturafile($event)" class="form-control" type="file">
+    </div>
+
+    <!-- <div class="form-group">
+        <label for="formFile" class="form-label mt-4 ">Seleccione PDF</label>
+        <input formControlName="pdf" name="pdf" class="form-control" type="file">
+    </div> -->
+    <div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+    <!-- </form> -->
+</div>
+<app-footer></app-footer>
