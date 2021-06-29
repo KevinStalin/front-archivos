@@ -11,15 +11,34 @@
 
     <div class="form-group">
         <label for="formFile" class="form-label mt-4 ">Seleccione Excel</label>
-        <input (change)="capturafile($event)" class="form-control" type="file">
+        <input (change)="onFileChange($event)" class="form-control" type="file" multiple="false">
     </div>
+    <table id="TheTable" class="table table-striped">
+        <thead #header>
+            <tr>
+                <th *ngFor="let headValue of headData">
+                    {{headValue}}
+                </th>
+            </tr>
+        </thead>
+        <tbody #container>
+            <tr *ngFor="let row of data">
+                <td *ngFor="let val of headData; let i =index">
+                    {{row[i] || ' '}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div *ngIf="previsualizacion">
+        <img [src]="previsualizacion">
+    </div> -->
 
     <!-- <div class="form-group">
         <label for="formFile" class="form-label mt-4 ">Seleccione PDF</label>
         <input formControlName="pdf" name="pdf" class="form-control" type="file">
     </div> -->
     <div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="button" (click)="subirArchivo()" class="btn btn-primary">Enviar</button>
     </div>
     <!-- </form> -->
 </div>

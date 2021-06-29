@@ -16,8 +16,10 @@ export class ServicioService {
     return this.http.get(`${environment.URL_API}/mensaje`);
   }
 
-  fileUpload(file:JSON){
-    console.log(file);
+  fileUpload(file:FormData){
+    file.forEach(eleme=>{
+      console.log("Seva al servidor",eleme );
+    });
     return this.http.post<response>(`${environment.URL_API}/upload`,file);
   }
 
