@@ -18,7 +18,9 @@ export class LoadComponent implements OnInit {
   // public formTouch!: FormGroup;
   public previsualizacion!: string;
   public archivos: any = [];
-  public user:any;
+  public user: any;
+  public loading!: boolean;
+  public tabla_ver: boolean = false;
   /**
    * Previsualizacion
    */
@@ -32,7 +34,7 @@ export class LoadComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private ruta: ActivatedRoute,
     private rutas: Router) { }
-  
+
 
   ngOnInit(): void {
     this.ruta.paramMap.subscribe(res => {
@@ -41,84 +43,26 @@ export class LoadComponent implements OnInit {
     })
 
   }
-  capturarFile(event: any) {
-    const archivoCapturado = event.target.files[0]
-    this.extraerBase64(archivoCapturado).then((imagen: any) => {
-      this.previsualizacion = imagen.base;
-      console.log(imagen);
-
-    })
-    this.archivos.push(archivoCapturado)
-    // 
-    // console.log(event.target.files);
-
-  }
-
-  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-          base: reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve({
-          base: null
-        });
-      };
-
-    } catch (e) {
-      return null;
-    }
-  });
-  subirArchivo(){
-    try {
-      // this.loading = true;
-      const formularioDeDatos = new FormData();
-      this.archivos.forEach((archivo: any) => {
-        console.log("Files",archivo);
-        formularioDeDatos.append('files', archivo)
-      });
-      formularioDeDatos.append('_user',this.user);
-      console.log("FORM_DATA>>>",formularioDeDatos);
-      this.server.fileUpload(formularioDeDatos).subscribe((res)=>{
-        console.log("RESPUESTA",res); 
-      })  
-      // this.rest.post(`http://localhost:3001/upload`, formularioDeDatos)
-      //   .subscribe(res => {
-      //     // this.loading = false;
-      //     console.log('Respuesta del servidor', res);
-
-      //   }, () => {
-      //     // this.loading = false;
-      //     alert('Error');
-      //   })
-    } catch (e) {
-      // this.loading = false;
-      console.log('ERROR', e);
-
-    }
-  }
-  /**
-   * Previsualizar xlsx
-   */
-
   onFileChange(evt: any) {
+    this.tabla_ver = true;
     const archivoCapturado = evt.target.files[0]
-    this.archivos.push(archivoCapturado)
+    if (this.archivos.length > 0) {
+      this.archivos.splice(0, 1);
+    }
+    // this.archivos.push(archivoCapturado)
+    this.archivos.splice(0, 0, archivoCapturado);
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
-    if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+    // if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const reader: FileReader = new FileReader();
     reader.onload = (e: any) => {
       /* read workbook */
+      // console.log(".onread->",e);
       const bstr: string = e.target.result;
+      // console.log("---\n","bstr",bstr);
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-
+      // console.log("---");
+      // console.log("WB->",wb);
       /* grab first sheet */
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
@@ -133,6 +77,73 @@ export class LoadComponent implements OnInit {
       // this.readDataSheet(ws2, 3);
     };
     reader.readAsBinaryString(target.files[0]);
+  }
+
+  capturaPDF(event: any) {
+    const archivoCapturado = event.target.files[0]
+    if (this.archivos.length > 1) {
+      this.archivos.splice(1, 1);
+    }
+    // this.archivos.push(archivoCapturado);
+    this.archivos.splice(1, 0, archivoCapturado);
+  }
+
+  subirArchivo() {
+    try {
+      this.loading = true;
+      const formularioDeDatos = new FormData();
+      this.archivos.forEach((archivo: any) => {
+        // console.log("Files", archivo);
+        formularioDeDatos.append('files', archivo)
+      });
+      formularioDeDatos.append('user', this.user);
+      this.server.fileUpload(formularioDeDatos)
+        .subscribe((ser) => {
+          this.loading = false;
+          console.log("RESPUESTA S->", ser);
+          console.log(ser.message);
+          if (ser.ok) {
+            alert(ser.message);
+          } else {
+            alert(ser.message);
+          }
+        });
+    } catch (e) {
+      this.loading = false;
+      console.log('ERROR', e);
+    }
+  }
+
+  descargarExcel() {
+    const excelpath = '../../../assets/documentos/Formato.xlsx';
+    // const excelNombre = 'Formato.xlsx';
+    const tipoDato = 'application/vnd.ms-excel';
+    const binario = excelpath;
+    let req = new XMLHttpRequest();
+    // let data;
+    req.open('GET', excelpath, true);
+    req.responseType = "arraybuffer";
+    req.onload = (e) => {
+      const bstr = e.target
+      console.log("E->", e);
+
+      let data = new Uint8Array(req.response);
+
+
+      // TO export the Excel file
+      // this.saveAsExcelFile(excelBuffer, 'X');
+      const filepath = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.ms-excel' }));
+      const dowloadLink = document.createElement('a');
+      dowloadLink.href = filepath;
+      dowloadLink.setAttribute('dowload', 'Formato.xlsx');
+      document.body.appendChild(dowloadLink);
+      dowloadLink.click();
+
+    };
+
+    req.send();
+
+
   }
 
 }

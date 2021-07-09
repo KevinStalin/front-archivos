@@ -6,3 +6,9 @@
     margin-top: 1rem;
     cursor: pointer;
 }
+
+.tabla_ver {
+    overflow-y: scroll;
+    height: 600px;
+    width: 100%;
+}
