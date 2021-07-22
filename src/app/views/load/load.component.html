@@ -1,50 +1,86 @@
 <app-header></app-header>
 
-
-
 <div class="container p-3">
-    <!-- <form [formGroup]="formTouch" (submit)="getTouch()" enctype="multipart/form-data"> -->
+  <!-- <form [formGroup]="formTouch" (submit)="getTouch()" enctype="multipart/form-data"> -->
 
-    <div >
-        <h2 align="center"><strong>SELECCION DE ARCHIVOS</strong></h2>
-        <button style="float:right;" (click)="descargarExcel()" class="btn btn-secondary">DESCARGA FORMATO (.xlsx)</button>
-    </div>
+  <div>
+    <h2 align="center"><strong>SELECCION DE ARCHIVOS</strong></h2>
+    <button
+      style="float: right"
+      (click)="descargarExcel()"
+      class="btn btn-secondary"
+    >
+      DESCARGA FORMATO (.xlsx)
+    </button>
+  </div>
 
-    <div class="form-group">
-        <label for="formFile" class="form-label mt-4 ">Seleccione Excel</label>
-        <input (change)="onFileChange($event)" class="form-control" type="file" multiple="false">
-    </div>
-    <div class="form-group">
-        <label for="formFile" class="form-label mt-4 ">Seleccione PDF</label>
-        <input (change)="capturaPDF($event)" class="form-control" type="file">
-    </div>
-    <br>
-    <div class="tabla_ver" *ngIf="tabla_ver">
-        <br>
-        <h2>Datos a enviar</h2>
-        <table id="TheTable" class="table table-striped">
-            <thead #header>
-                <tr>
-                    <th *ngFor="let headValue of headData">
-                        {{headValue}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody #container>
-                <tr *ngFor="let row of data">
-                    <td *ngFor="let val of headData; let i =index">
-                        {{row[i] || ' '}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <br>
-        <br>
-        <button type="button" (click)="subirArchivo()" class="btn btn-success" [disabled]="loading">Enviar</button>
-        <span *ngIf="loading"><img src="../../../assets/imagenes/loading-11.gif" width="50" height="50"></span>
-    </div>
+  <div class="form-group">
+    <label for="formFile" class="form-label mt-4">Seleccione Excel</label>
+    <input
+      (change)="onFileChange($event)"
+      class="form-control"
+      type="file"
+      multiple="false"
+    />
+  </div>
+  <div class="form-group">
+    <label for="formFile" class="form-label mt-4">Seleccione PDF</label>
+    <input
+      (change)="capturaPDF($event)"
+      class="form-control"
+      type="file"
+      id="PDF"
+    />
+  </div>
+  <br />
+  <div class="tabla_ver" *ngIf="tabla_ver">
+    <br/>
+    <h2>Datos a enviar</h2>
+    <table id="TheTable" class="table table-striped">
+      <thead #header>
+        <tr>
+          <th *ngFor="let headValue of headData">
+            {{ headValue }}
+          </th>
+        </tr>
+      </thead>
+      <tbody #container>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let val of headData; let i = index">
+            {{ row[i] || " " }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <br>
+  <div class="pdf_ver" *ngIf="pdf_ver">
+    <pdf-viewer
+      [src]="pdfSrc"
+      [render-text]="true"
+      [show-all]="true"
+      style="display: block"
+    ></pdf-viewer>
+  </div>
 
+  <div>
+    <br />
+    <br />
+    <button
+      type="button"
+      (click)="subirArchivo()"
+      class="btn btn-success"
+      [disabled]="loading"
+    >
+      Enviar
+    </button>
+    <span *ngIf="loading"
+      ><img
+        src="../../../assets/imagenes/loading-11.gif"
+        width="50"
+        height="50"
+    /></span>
+  </div>
 </div>
 <app-footer></app-footer>

@@ -1,8 +1,8 @@
 export interface reporte{
     fecha: string,
     usuario: string,
-    xlsx: string,
-    pdf: string
+    XLSX: string,
+    PDF: string
 
     // ok:string,
     // message:string,

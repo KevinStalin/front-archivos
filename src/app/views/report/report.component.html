@@ -16,7 +16,7 @@
             <tr *ngFor="let item of reportes">
                 <td>{{item.fecha}}</td>
                 <td>{{item.usuario}}</td>
-                <td (click)="descargarExcel(item.XSLX)"><a>{{item.XSLX}}</a></td>
+                <td (click)="descargarExcel(item.XLSX)"><a>{{item.XLSX}}</a></td>
                 <td>{{item.PDF}}</td>
             </tr>
         </tbody>
