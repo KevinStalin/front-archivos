@@ -52,32 +52,26 @@ export class LoadComponent implements OnInit {
     }
     // this.archivos.push(archivoCapturado)
     this.archivos.splice(0, 0, archivoCapturado);
-    /* wire up file reader */
+   
     const target: DataTransfer = <DataTransfer>evt.target;
-    // if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+   
     const reader: FileReader = new FileReader();
-    reader.onload = (e: any) => {
-      /* read workbook */
-      // console.log(".onread->",e);
+    reader.onload = (e: any) => { 
       const bstr: string = e.target.result;
-      // console.log("---\n","bstr",bstr);
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-      // console.log("---");
-      // console.log("WB->",wb);
-      /* grab first sheet */
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
       /* save data */
       this.data = <AOA>(
-        XLSX.utils.sheet_to_json(ws, { header: 1, raw: false, range: 3 })
+        XLSX.utils.sheet_to_json(ws, { header: 1, raw: false, range: 0 })
       );
       console.log(this.data[0]);
-
       this.headData = this.data[0];
       this.data = this.data.slice(1); // remove first header record
-
-      const ws2: XLSX.WorkSheet = wb.Sheets[wb.SheetNames[1]];
+      // const ws2: XLSX.WorkSheet = wb.Sheets[wb.SheetNames[1]];
       // this.readDataSheet(ws2, 3);
+      // console.log("WS2");
+      // console.log(ws2);
     };
     reader.readAsBinaryString(target.files[0]);
   }

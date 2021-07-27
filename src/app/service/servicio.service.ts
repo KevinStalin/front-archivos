@@ -33,7 +33,7 @@ export class ServicioService {
     return this.http.get<reporte[]>(`${environment.URL_API}/reporte`);
   }
   /**
-   * PAGINA REGISTROS
+   * PAGINA REGISTROS CONSULTAS
    */
 
   getDataFederacion(): Observable<registros[]> {
@@ -41,11 +41,101 @@ export class ServicioService {
       `${environment.URL_API}/muestra_federacion`
     );
   }
+  getDataProvincia(): Observable<registros[]> {
+    return this.http.get<registros[]>(
+      `${environment.URL_API}/muestra_provincia`
+    );
+  }
+  getDataDeporte(): Observable<registros[]> {
+    return this.http.get<registros[]>(`${environment.URL_API}/muestra_deporte`);
+  }
+  getDataEtnia(): Observable<registros[]> {
+    return this.http.get<registros[]>(`${environment.URL_API}/muestra_etnia`);
+  }
+  getDataDisciplina(): Observable<registros[]> {
+    return this.http.get<registros[]>(
+      `${environment.URL_API}/muestra_disciplina`
+    );
+  }
+  getDataCategoriaEdad(): Observable<registros[]> {
+    return this.http.get<registros[]>(
+      `${environment.URL_API}/muestra_categoria_edad`
+    );
+  }
+  getDataCategoriaProyecto(): Observable<registros[]> {
+    return this.http.get<registros[]>(
+      `${environment.URL_API}/muestra_categoria_proyecto`
+    );
+  }
+  getDataPrueba(): Observable<registros[]> {
+    return this.http.get<registros[]>(`${environment.URL_API}/muestra_prueba`);
+  }
+  getDataSector(): Observable<registros[]> {
+    return this.http.get<registros[]>(`${environment.URL_API}/muestra_sector`);
+  }
+  getDataGenero(): Observable<registros[]> {
+    return this.http.get<registros[]>(`${environment.URL_API}/muestra_genero`);
+  }
 
-  addFederacion(federacion: any) {
+  /**
+   * PAGINA REGISTROS AGREGA (INSERT BDD)
+   */
+
+  addFederacion(valor: any) {
     return this.http.post<valida>(
       `${environment.URL_API}/Insert/federacion`,
-      federacion
+      valor
+    );
+  }
+  addProvincia(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/provincia`,
+      valor
+    );
+  }
+  addDeporte(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/deporte`,
+      valor
+    );
+  }
+  addDisciplina(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/disciplina`,
+      valor
+    );
+  }
+  addPrueba(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/prueba`,
+      valor
+    );
+  }
+  addCategoria_proyecto(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/categoria_proyecto`,
+      valor
+    );
+  }
+  addCategoria_edad(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/categoria_edad`,
+      valor
+    );
+  }
+  addEtnia(valor: any) {
+    return this.http.post<valida>(`${environment.URL_API}/Insert/etnia`, valor);
+  }
+  addSector(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/sector`,
+      valor
+    );
+  }
+  addGenero(valor: any) {
+    return this.http.post<valida>(
+      `${environment.URL_API}/Insert/genero`,
+      valor
     );
   }
 
@@ -57,23 +147,4 @@ export class ServicioService {
       `${environment.URL_API}/ASYNC/federacion/${provincia}`
     );
   }
-  // ---------PROVINCIA--------------------
-  getDataProvincia() {
-    return this.http.get(`${environment.URL_API}/muestra_provincia`);
-  }
-  addProvincia(provincia: any) {
-    return this.http.post<valida>(
-      `${environment.URL_API}/Insert/provincia`,
-      provincia
-    );
-  }
-
-  // ----------DEPORTE---------------
-  getDataDeporte() {
-    return this.http.get(`${environment.URL_API}/muestra_deporte`);
-  }
-
-  /**
-   * **************************
-   */
 }

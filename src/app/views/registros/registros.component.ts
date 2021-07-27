@@ -15,12 +15,18 @@ export class RegistrosComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  public formFederacion!: FormGroup;
-  public formProvincia!: FormGroup;
+  public formFormulario!: FormGroup;
 
-  public dataFederacion: registros[]=[];
-  public dataProvincia: any = [];
-  public dataDeporte: any = [];
+  public dataFederacion: registros[] = [];
+  public dataProvincia: registros[] = [];
+  public dataDeporte: registros[] = [];
+  public dataEtnia: registros[] = [];
+  public dataDisciplina: registros[] = [];
+  public dataCategoriaEdad: registros[] = [];
+  public dataCategoriaProyecto: registros[] = [];
+  public dataPrueba: registros[] = [];
+  public dataSector: registros[] = [];
+  public dataGenero: registros[] = [];
 
   ngOnInit(): void {
     this.serviciosTraerData();
@@ -28,43 +34,57 @@ export class RegistrosComponent implements OnInit {
   }
 
   serviciosTraerData() {
-    /**
-     * Datos de: Federacion Ecuatoriana
-     */
     this.serve.getDataFederacion().subscribe((res) => {
       this.dataFederacion = res;
     });
-    /**
-     * Datos de:
-     */
     this.serve.getDataProvincia().subscribe((res) => {
       this.dataProvincia = res;
     });
-
     this.serve.getDataDeporte().subscribe((res) => {
       this.dataDeporte = res;
+    });
+    this.serve.getDataEtnia().subscribe((res) => {
+      this.dataEtnia = res;
+    });
+    this.serve.getDataDisciplina().subscribe((res) => {
+      this.dataDisciplina = res;
+    });
+    this.serve.getDataCategoriaEdad().subscribe((res) => {
+      this.dataCategoriaEdad = res;
+    });
+    this.serve.getDataCategoriaProyecto().subscribe((res) => {
+      this.dataCategoriaProyecto = res;
+    });
+    this.serve.getDataPrueba().subscribe((res) => {
+      this.dataPrueba = res;
+    });
+    this.serve.getDataSector().subscribe((res) => {
+      this.dataSector = res;
+    });
+    this.serve.getDataGenero().subscribe((res) => {
+      this.dataGenero = res;
     });
   }
 
   formulariosInstancias() {
-    this.formFederacion = this.formBuilder.group({
-      federacion: [
+    this.formFormulario = this.formBuilder.group({
+      Dato: [
         '',
         Validators.required,
-        MyValidations.validaFederacion(this.serve),
-      ], //MyValidations.validaFederacion(this.serve)
+        // MyValidations.validaFederacion(this.serve),
+      ],
     });
-    this.formProvincia = this.formBuilder.group({
-      provincia: ['', Validators.required],
-    });
+    // this.formProvincia = this.formBuilder.group({
+    //   provincia: ['', Validators.required],
+    // });
   }
 
   /**
    * Submits
    */
-
   insertaFederacion() {
-    this.serve.addFederacion(this.formFederacion.value).subscribe((res) => {
+    // console.log('Federacion del form->', this.formFormulario.value);
+    this.serve.addFederacion(this.formFormulario.value).subscribe((res) => {
       console.log(res);
       if (res.ok) {
         alert(res.message);
@@ -73,8 +93,73 @@ export class RegistrosComponent implements OnInit {
   }
 
   insertaProvincia() {
-    console.log(this.formProvincia.value);
-    this.serve.addProvincia(this.formProvincia.value).subscribe((res) => {
+    this.serve.addProvincia(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaDeporte() {
+    this.serve.addDeporte(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaDisciplina() {
+    this.serve.addDisciplina(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaPrueba() {
+    this.serve.addPrueba(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaCategoria_proyecto() {
+    this.serve
+      .addCategoria_proyecto(this.formFormulario.value)
+      .subscribe((res) => {
+        console.log(res);
+        if (res.ok) {
+          alert(res.message);
+        }
+      });
+  }
+  insertaCategoria_edad() {
+    this.serve.addCategoria_edad(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaEtnia() {
+    this.serve.addEtnia(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaSector() {
+    this.serve.addSector(this.formFormulario.value).subscribe((res) => {
+      console.log(res);
+      if (res.ok) {
+        alert(res.message);
+      }
+    });
+  }
+  insertaGenero() {
+    this.serve.addGenero(this.formFormulario.value).subscribe((res) => {
       console.log(res);
       if (res.ok) {
         alert(res.message);
@@ -82,3 +167,4 @@ export class RegistrosComponent implements OnInit {
     });
   }
 }
+

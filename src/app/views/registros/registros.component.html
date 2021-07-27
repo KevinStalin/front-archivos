@@ -1,31 +1,30 @@
 <app-header></app-header>
 
-<div class="container pt-3">
+<div class="container pt-1">
   <div class="btn-toolbar" role="toolbar">
     <div class="btn-group me-2" role="group">
-      <div class="btn-group me-4" role="group">
-        <!--  -->
+      <div class="btn-group me-2" role="group">
+        <!-- Federacion -->
         <div class="card mb-3">
-          <h3 class="card-header">FEDERACION ECUATORIANA</h3>
+          <h3 class="card-header">FEDERACION</h3>
           <div class="card-body" id="lita_federacion">
-            <!-- <h5 class="card-title">Listado</h5> -->
             <ul
               class="list-group list-group-flush"
-              *ngFor="let federacion of dataFederacion"
+              *ngFor="let item of dataFederacion"
             >
-              <li class="list-group-item">{{ federacion.descripcion }}</li>
+              <li class="list-group-item">{{ item.descripcion }}</li>
             </ul>
           </div>
-          <form [formGroup]="formFederacion" (submit)="insertaFederacion()">
+          <form [formGroup]="formFormulario" (submit)="insertaFederacion()">
             <div class="card-body">
               <label class="form-label">Ingrese Federacion </label>
               <input
-                formControlName="federacion"
+                formControlName="Dato"
                 type="text"
                 class="form-control mb-2"
                 placeholder="Federacion Ecuatoriana"
               />
-              <div *ngIf="formFederacion.get('federacion')?.errors">
+              <!-- <div *ngIf="formFederacion.get('federacion')?.errors">
                 <p
                   *ngIf="formFederacion.get('federacion')?.hasError('required')"
                 >
@@ -34,7 +33,7 @@
                 <p *ngIf="formFederacion.get('federacion')?.hasError('ok')">
                   ya en uso
                 </p>
-              </div>
+              </div> -->
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -42,38 +41,57 @@
           </form>
         </div>
       </div>
-      <div class="btn-group" role="group">
-        <!--  -->
+      <div class="btn-group me-2" role="group">
+        <!-- provincia -->
         <div class="card mb-3">
           <h3 class="card-header">PROVINCIA</h3>
           <div class="card-body" id="lita_federacion">
-            <!-- <h5 class="card-title">Listado</h5> -->
             <ul
               class="list-group list-group-flush"
-              *ngFor="let provincia of dataProvincia"
+              *ngFor="let item of dataProvincia"
             >
-              <li class="list-group-item">{{ provincia.provincia }}</li>
+              <li class="list-group-item">{{ item.descripcion }}</li>
             </ul>
           </div>
-          <form [formGroup]="formProvincia" (submit)="insertaProvincia()">
+          <form [formGroup]="formFormulario" (submit)="insertaProvincia()">
             <div class="card-body">
               <label class="form-label">Ingrese Provincia </label>
               <input
-                formControlName="provincia"
+                formControlName="Dato"
                 type="text"
                 class="form-control mb-2"
-                placeholder="Federacion Ecuatoriana"
+                placeholder="Provincia"
               />
-              <div *ngIf="formFederacion.get('federacion')?.errors">
-                <p
-                  *ngIf="formFederacion.get('federacion')?.hasError('required')"
-                >
-                  Campo requerido
-                </p>
-                <p *ngIf="formFederacion.get('federacion')?.hasError('ok')">
-                  ya en uso
-                </p>
-              </div>
+            
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!-- Deporte -->
+        <div class="card mb-3">
+          <h3 class="card-header">DEPORTE</h3>
+          <div class="card-body" id="lita_federacion">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataDeporte"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaDeporte()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Deporte </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Deporte"
+              />
+            
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -84,38 +102,28 @@
     </div>
 
     <div class="btn-group me-2" role="group">
-      <div class="btn-group me-4" role="group">
-        <!--  -->
+      <div class="btn-group me-2" role="group">
+        <!-- Disciplona -->
         <div class="card mb-3">
-          <h3 class="card-header">DEPORTE</h3>
+          <h3 class="card-header">DISCIPLINA</h3>
           <div class="card-body" id="lita_federacion">
-            <!-- <h5 class="card-title">Listado</h5> -->
             <ul
               class="list-group list-group-flush"
-              *ngFor="let deporte of dataDeporte"
+              *ngFor="let item of dataDisciplina"
             >
-              <li class="list-group-item">{{ deporte.deporte }}</li>
+              <li class="list-group-item">{{ item.descripcion }}</li>
             </ul>
           </div>
-          <form [formGroup]="formFederacion">
+          <form [formGroup]="formFormulario" (submit)="insertaDisciplina()">
             <div class="card-body">
-              <label class="form-label">Ingrese Deporte </label>
+              <label class="form-label">Ingrese Disciplina </label>
               <input
-                formControlName="provincia"
+                formControlName="Dato"
                 type="text"
                 class="form-control mb-2"
-                placeholder="Federacion Ecuatoriana"
+                placeholder="Disciplina"
               />
-              <div *ngIf="formFederacion.get('federacion')?.errors">
-                <p
-                  *ngIf="formFederacion.get('federacion')?.hasError('required')"
-                >
-                  Campo requerido
-                </p>
-                <p *ngIf="formFederacion.get('federacion')?.hasError('ok')">
-                  ya en uso
-                </p>
-              </div>
+            
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -123,105 +131,181 @@
           </form>
         </div>
       </div>
-      <div class="btn-group" role="group">
-        <!--  -->
-        <!-- <div class="card mb-3">
-                    <h3 class="card-header">Card header</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                    </div>
-
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> -->
+      <div class="btn-group me-2" role="group">
+        <!-- Prueba -->
+        <div class="card mb-3">
+          <h3 class="card-header">PRUEBA</h3>
+          <div class="card-body" id="lita_federacion">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataPrueba"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaPrueba()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Prueba </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Prueba"
+              />
+           
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!-- Categoria proyecto -->
+        <div class="card mb-3">
+          <h3 class="card-header">Proyecto</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataCategoriaProyecto"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaCategoria_proyecto()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Proyecto </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Categoria Proyecto"
+              />
+            
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group me-2" role="group">
+      <div class="btn-group me-2" role="group">
+        <!-- Categoria edad -->
+        <div class="card mb-3">
+          <h3 class="card-header">Categoria Edad</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataCategoriaEdad"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario"  (submit)="insertaCategoria_edad()">
+            <div class="card-body">
+              <label class="form-label">Ingrese categoria </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Categoria Edad"
+              />
+              
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!--Etnia  -->
+        <div class="card mb-3">
+          <h3 class="card-header">Etnia</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataEtnia"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaEtnia()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Etnia </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Etnia"
+              />
+              
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!--Sector  -->
+        <div class="card mb-3">
+          <h3 class="card-header">Sector</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataSector"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaSector()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Sector </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Sector"
+              />
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!-- genero -->
+        <div class="card mb-3">
+          <h3 class="card-header">Genero</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataGenero"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaGenero()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Genero </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Genero"
+              />
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" data-bs-toggle="tab" href="#">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a
-      class="nav-link dropdown-toggle"
-      data-bs-toggle="dropdown"
-      href="#"
-      role="button"
-      aria-haspopup="true"
-      aria-expanded="false"
-      >Dropdown</a
-    >
-    <div class="dropdown-menu" style="">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade show active" id="home">
-    <p>
-      Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt
-      tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-      williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-      dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson
-      ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
-      cardigan american apparel, butcher voluptate nisi qui.
-    </p>
-  </div>
-  <div class="tab-pane fade" id="profile">
-    <p>
-      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin
-      coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings
-      next level wes anderson artisan four loko farm-to-table craft beer twee.
-      Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean
-      shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
-      aesthetic magna delectus mollit.
-    </p>
-  </div>
-  <div class="tab-pane fade" id="dropdown1">
-    <p>
-      Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out
-      mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.
-      Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
-      locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy
-      irony. Leggings gentrify squid 8-bit cred pitchfork.
-    </p>
-  </div>
-  <div class="tab-pane fade" id="dropdown2">
-    <p>
-      Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party
-      before they sold out master cleanse gluten-free squid scenester freegan
-      cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf
-      cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR,
-      banh mi before they sold out farm-to-table VHS viral locavore cosby
-      sweater.
-    </p>
-  </div>
-</div>
-
 <app-footer></app-footer>
