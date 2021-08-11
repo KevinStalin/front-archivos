@@ -13,8 +13,20 @@ import { registros } from '../models/registros';
 export class ServicioService {
   constructor(private http: HttpClient) {}
 
-  test_Data() {
-    return this.http.get(`${environment.URL_API}/mensaje`);
+  getFormato(): Observable<Blob> {
+    return this.http.get(`${environment.URL_API}/envioFormato`, {
+      responseType: 'blob',
+    });
+  }
+  getExcel(id: string): Observable<Blob> {
+    return this.http.get(`${environment.URL_API}/envioExcel/${id}`, {
+      responseType: 'blob',
+    });
+  }
+  getPDF(id: string): Observable<Blob> {
+    return this.http.get(`${environment.URL_API}/envioPDF/${id}`, {
+      responseType: 'blob',
+    });
   }
 
   fileUpload(file: FormData) {

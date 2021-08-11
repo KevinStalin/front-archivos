@@ -9,7 +9,7 @@
         <tr>
             <td><strong>Fecha</strong></td>
             <td><strong>Usuario</strong></td>
-            <td><strong>XSLX</strong></td>
+            <td><strong>XLSX</strong></td>
             <td><strong>PDF</strong></td>
         </tr>
         <tbody>
@@ -17,7 +17,7 @@
                 <td>{{item.fecha}}</td>
                 <td>{{item.usuario}}</td>
                 <td (click)="descargarExcel(item.XLSX)"><a>{{item.XLSX}}</a></td>
-                <td>{{item.PDF}}</td>
+                <td (click)="descargarPDF(item.PDF)">{{item.PDF}}</td>
             </tr>
         </tbody>
     </table>

@@ -62,7 +62,7 @@
                 class="form-control mb-2"
                 placeholder="Provincia"
               />
-            
+
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -91,97 +91,7 @@
                 class="form-control mb-2"
                 placeholder="Deporte"
               />
-            
-              <button [disabled]="" type="submit" class="btn btn-success">
-                Guardar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <div class="btn-group me-2" role="group">
-      <div class="btn-group me-2" role="group">
-        <!-- Disciplona -->
-        <div class="card mb-3">
-          <h3 class="card-header">DISCIPLINA</h3>
-          <div class="card-body" id="lita_federacion">
-            <ul
-              class="list-group list-group-flush"
-              *ngFor="let item of dataDisciplina"
-            >
-              <li class="list-group-item">{{ item.descripcion }}</li>
-            </ul>
-          </div>
-          <form [formGroup]="formFormulario" (submit)="insertaDisciplina()">
-            <div class="card-body">
-              <label class="form-label">Ingrese Disciplina </label>
-              <input
-                formControlName="Dato"
-                type="text"
-                class="form-control mb-2"
-                placeholder="Disciplina"
-              />
-            
-              <button [disabled]="" type="submit" class="btn btn-success">
-                Guardar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="btn-group me-2" role="group">
-        <!-- Prueba -->
-        <div class="card mb-3">
-          <h3 class="card-header">PRUEBA</h3>
-          <div class="card-body" id="lita_federacion">
-            <ul
-              class="list-group list-group-flush"
-              *ngFor="let item of dataPrueba"
-            >
-              <li class="list-group-item">{{ item.descripcion }}</li>
-            </ul>
-          </div>
-          <form [formGroup]="formFormulario" (submit)="insertaPrueba()">
-            <div class="card-body">
-              <label class="form-label">Ingrese Prueba </label>
-              <input
-                formControlName="Dato"
-                type="text"
-                class="form-control mb-2"
-                placeholder="Prueba"
-              />
-           
-              <button [disabled]="" type="submit" class="btn btn-success">
-                Guardar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="btn-group me-2" role="group">
-        <!-- Categoria proyecto -->
-        <div class="card mb-3">
-          <h3 class="card-header">Proyecto</h3>
-          <div class="card-body" id="dataPrueba">
-            <ul
-              class="list-group list-group-flush"
-              *ngFor="let item of dataCategoriaProyecto"
-            >
-              <li class="list-group-item">{{ item.descripcion }}</li>
-            </ul>
-          </div>
-          <form [formGroup]="formFormulario" (submit)="insertaCategoria_proyecto()">
-            <div class="card-body">
-              <label class="form-label">Ingrese Proyecto </label>
-              <input
-                formControlName="Dato"
-                type="text"
-                class="form-control mb-2"
-                placeholder="Categoria Proyecto"
-              />
-            
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -190,6 +100,7 @@
         </div>
       </div>
     </div>
+    <!--  -->
     <div class="btn-group me-2" role="group">
       <div class="btn-group me-2" role="group">
         <!-- Categoria edad -->
@@ -203,7 +114,7 @@
               <li class="list-group-item">{{ item.descripcion }}</li>
             </ul>
           </div>
-          <form [formGroup]="formFormulario"  (submit)="insertaCategoria_edad()">
+          <form [formGroup]="formFormulario" (submit)="insertaCategoria_edad()">
             <div class="card-body">
               <label class="form-label">Ingrese categoria </label>
               <input
@@ -212,7 +123,7 @@
                 class="form-control mb-2"
                 placeholder="Categoria Edad"
               />
-              
+
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -241,7 +152,7 @@
                 class="form-control mb-2"
                 placeholder="Etnia"
               />
-              
+
               <button [disabled]="" type="submit" class="btn btn-success">
                 Guardar
               </button>
@@ -306,6 +217,100 @@
         </div>
       </div>
     </div>
+    <!--  -->
+    <div class="btn-group me-2" role="group">
+      <div class="btn-group me-2" role="group">
+        <!-- Disciplona -->
+        <div class="card mb-3">
+          <h3 class="card-header">DISCIPLINA</h3>
+          <div class="card-body" id="lita_federacion">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataDisciplina"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaDisciplina()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Disciplina </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Disciplina"
+              />
+
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!-- Prueba -->
+        <div class="card mb-3">
+          <h3 class="card-header">PRUEBA</h3>
+          <div class="card-body" id="lita_federacion">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataPrueba"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="formFormulario" (submit)="insertaPrueba()">
+            <div class="card-body">
+              <label class="form-label">Ingrese Prueba </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Prueba"
+              />
+
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group me-2" role="group">
+        <!-- Categoria proyecto -->
+        <div class="card mb-3">
+          <h3 class="card-header">Proyecto</h3>
+          <div class="card-body" id="dataPrueba">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let item of dataCategoriaProyecto"
+            >
+              <li class="list-group-item">{{ item.descripcion }}</li>
+            </ul>
+          </div>
+          <form
+            [formGroup]="formFormulario"
+            (submit)="insertaCategoria_proyecto()"
+          >
+            <div class="card-body">
+              <label class="form-label">Ingrese Proyecto </label>
+              <input
+                formControlName="Dato"
+                type="text"
+                class="form-control mb-2"
+                placeholder="Categoria Proyecto"
+              />
+
+              <button [disabled]="" type="submit" class="btn btn-success">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--  -->
   </div>
 </div>
 <app-footer></app-footer>

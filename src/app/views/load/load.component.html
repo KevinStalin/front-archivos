@@ -1,13 +1,13 @@
 <app-header></app-header>
 
-<div class="container p-3">
+<div class class="container p-3">
   <!-- <form [formGroup]="formTouch" (submit)="getTouch()" enctype="multipart/form-data"> -->
 
   <div>
     <h2 align="center"><strong>SELECCION DE ARCHIVOS</strong></h2>
     <button
       style="float: right"
-      (click)="descargarExcel()"
+      (click)="descargarExcel2()"
       class="btn btn-secondary"
     >
       DESCARGA FORMATO (.xlsx)
@@ -33,8 +33,44 @@
     />
   </div>
   <br />
+  <!-- <div class="alert alert-dismissible alert-danger" *ngIf="warning">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">{{ mensajeWarning }}</p>
+  </div> -->
+  <div
+    class="card border-danger mb-3 p-2"
+    *ngIf="
+      warning01 ||
+      warning02 ||
+      warning03 ||
+      warning04 ||
+      warning05 ||
+      warning06 ||
+      warning07 ||
+      warning08 ||
+      warning09 ||
+      warning10
+    "
+  >
+    <p class="text-danger" *ngIf="warning01">
+      {{ mensajeWarningCategoriaEdad }}
+    </p>
+    <p class="text-danger" *ngIf="warning02">{{ mensajeWarningProvincia }}</p>
+    <p class="text-danger" *ngIf="warning03">
+      {{ mensajeWarningCategoriaProyecto }}
+    </p>
+    <p class="text-danger" *ngIf="warning04">{{ mensajeWarningEtnia }}</p>
+    <p class="text-danger" *ngIf="warning05">{{ mensajeWarningSector }}</p>
+    <p class="text-danger" *ngIf="warning06">{{ mensajeWarningFederacion }}</p>
+    <p class="text-danger" *ngIf="warning07">{{ mensajeWarningDeporte }}</p>
+    <p class="text-danger" *ngIf="warning08">{{ mensajeWarningDisciplina }}</p>
+    <p class="text-danger" *ngIf="warning09">{{ mensajeWarningPrueba }}</p>
+    <p class="text-danger" *ngIf="warning10">{{ mensajeWarningGenero }}</p>
+  </div>
+  <br />
   <div class="tabla_ver" *ngIf="tabla_ver">
-    <br/>
+    <br />
     <h2>Datos a enviar</h2>
     <table id="TheTable" class="table table-striped">
       <thead #header>
@@ -47,14 +83,14 @@
       <tbody #container>
         <tr *ngFor="let row of data">
           <td *ngFor="let val of headData; let i = index">
-            {{ row[i] || " " }}
+            {{ row[i] }}
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <br>
-  <br>
+  <br />
+  <br />
   <div class="pdf_ver" *ngIf="pdf_ver">
     <pdf-viewer
       [src]="pdfSrc"
@@ -73,6 +109,7 @@
       class="btn btn-success"
       [disabled]="loading"
     >
+      {{ loading }}
       Enviar
     </button>
     <span *ngIf="loading"

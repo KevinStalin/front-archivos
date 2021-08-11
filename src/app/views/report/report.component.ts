@@ -9,49 +9,51 @@ import { reporte } from '../../models/reportes';
 export class ReportComponent implements OnInit {
   public reportes: reporte[] = [];
 
-  constructor(private service: ServicioService) {}
+  constructor(private serve: ServicioService) {}
 
   ngOnInit(): void {
-    this.service.getRegis().subscribe((res) => {
+    this.serve.getRegis().subscribe((res) => {
       console.log(res);
       this.reportes = res;
     });
   }
 
-  descargarExcel(nombrearchivo: any) {
+  descargarExcel(nombrearchivo: string) {
     console.log('Nombre Archivo Lista-> ', nombrearchivo);
-    const genralPath =
-      '/home/kevin/M_Deportes/Archivos/Back_archivos/src/routes/uploads/' +
-      nombrearchivo;
-    const excelpath = '../../../assets/documentos/Formato.xlsx';
-    // const excelNombre = 'Formato.xlsx';
-    const tipoDato = 'application/vnd.ms-excel';
-    const binario = excelpath;
-    let req = new XMLHttpRequest();
-    // let data;
-    console.log('Path GENERAL_>', genralPath);
-    req.open('GET', genralPath, true);
-    req.responseType = 'arraybuffer';
-    req.onload = (e) => {
-      const bstr = e.target;
-      console.log('E->', e);
-
-      let data = new Uint8Array(req.response);
-      console.log('Data->Fun', data);
-
-      // TO export the Excel file
-      // this.saveAsExcelFile(excelBuffer, 'X');
-
-      const filepath = window.URL.createObjectURL(
-        new Blob([data], { type: 'application/vnd.ms-excel' })
+    this.serve.getExcel(nombrearchivo).subscribe((response) => {
+      console.log('Data response archivo');
+      console.log(response);
+      // this.adminExcel(response,excelNombre);
+      const url = window.URL.createObjectURL(
+        new Blob([response], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        })
       );
-      const dowloadLink = document.createElement('a');
-      dowloadLink.href = filepath;
-      dowloadLink.setAttribute('dowload', nombrearchivo);
-      document.body.appendChild(dowloadLink);
-      dowloadLink.click();
-    };
-
-    req.send();
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none;');
+      document.body.appendChild(a);
+      a.href = url;
+      a.download = nombrearchivo;
+      a.click();
+    });
+  }
+  descargarPDF(nombrearchivo: string) {
+    console.log('Nombre Archivo Lista-> ', nombrearchivo);
+    this.serve.getPDF(nombrearchivo).subscribe((response) => {
+      console.log('Data response archivo');
+      console.log(response);
+      // this.adminExcel(response,excelNombre);
+      const url = window.URL.createObjectURL(
+        new Blob([response], {
+          type: 'application/pdf',
+        })
+      );
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none;');
+      document.body.appendChild(a);
+      a.href = url;
+      a.download = nombrearchivo;
+      a.click();
+    });
   }
 }
